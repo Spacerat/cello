@@ -104,6 +104,15 @@ function semitoneTouchStart(event) {
 }
 
 function touchMove(event) {
+  document.getElementById("debug").innerHTML = JSON.stringify(
+    Array.from(event.touches).map((x) => ({
+      identifier: x.identifier,
+      clientX: x.clientX,
+      clientY: x.clientY,
+    })),
+    null,
+    2
+  );
   for (const touch of event.touches) {
     if (touches[touch.identifier] === "string") {
       playStringTouch(touch);
@@ -143,6 +152,3 @@ strings.addEventListener("touchstart", stringTouchStart);
 semitones.addEventListener("touchstart", semitoneTouchStart);
 document.addEventListener("touchmove", touchMove);
 document.addEventListener("touchend", touchEnd);
-document.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-});
