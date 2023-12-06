@@ -82,7 +82,7 @@ function playSemitoneTouch(touch) {
   const element = document.elementFromPoint(touch.clientX, touch.clientY);
   if (!element) return;
   const semitoneNumber = semitonesMap[element.id];
-  if (!semitoneNumber) return;
+  if (semitoneNumber === undefined || stringHz === null) return;
   const tone = stringHz * Math.pow(2, semitoneNumber / 12);
   getAudioWorld().playTone(tone);
 }
@@ -124,6 +124,7 @@ function touchEnd(event) {
     if (touches[touch.identifier] === "semitone") {
       semitoneNumber = 0;
       delete touches[touch.identifier];
+      playSemitoneTouch(touch);
     }
   }
 }
