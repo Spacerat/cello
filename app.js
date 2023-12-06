@@ -75,7 +75,7 @@ function getFrequencyFromTouches(touches) {
   // Play the highest held semitone touch
   const semitoneTouch = touches
     .filter((x) => x.target.id.startsWith("semitone-"))
-    .sort((a, b) => b.clientY - a.clientY)[0];
+    .sort((a, b) => a.clientY - b.clientY)[0];
   let semitoneNumber = 0;
 
   if (semitoneTouch) {
@@ -108,8 +108,6 @@ semitones.addEventListener("touchstart", handleTouch);
 document.addEventListener("touchmove", handleTouch);
 document.addEventListener("touchend", handleTouch);
 document.addEventListener("touchcancel", handleTouch);
-// document.addEventListener("mousedown", handleTouch);
-// document.addEventListener("mouseup", handleTouch);
 
 document.querySelector("#start").addEventListener("click", () => {
   getAudioWorld().audioCtx.resume();
