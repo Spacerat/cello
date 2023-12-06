@@ -108,6 +108,9 @@ function touchMove(event) {
     if (touches[touch.identifier] === "string") {
       playStringTouch(touch);
     }
+    if (touches[touch.identifier] === "semitone") {
+      playSemitoneTouch(touch);
+    }
   }
 }
 
@@ -115,8 +118,13 @@ function touchEnd(event) {
   for (const touch of event.changedTouches) {
     if (touches[touch.identifier] === "string") {
       getAudioWorld().stopTone();
+      delete touches[touch.identifier];
+      stringHz = null;
     }
-    delete touches[touch.identifier];
+    if (touches[touch.identifier] === "semitone") {
+      semitoneNumber = 0;
+      delete touches[touch.identifier];
+    }
   }
 }
 
