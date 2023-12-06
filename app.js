@@ -143,3 +143,6 @@ strings.addEventListener("touchstart", stringTouchStart);
 semitones.addEventListener("touchstart", semitoneTouchStart);
 document.addEventListener("touchmove", touchMove);
 document.addEventListener("touchend", touchEnd);
+document.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+});
