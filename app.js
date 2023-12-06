@@ -131,9 +131,12 @@ function touchEnd(event) {
       stringHz = null;
     }
     if (touches[touch.identifier] === "semitone") {
+      // TODO: play the highest held semitone touch
       semitoneNumber = 0;
       delete touches[touch.identifier];
-      playSemitoneTouch(touch);
+      if (stringHz !== null) {
+        getAudioWorld().playTone(stringHz);
+      }
     }
   }
 }
